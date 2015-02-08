@@ -13,6 +13,12 @@
   ],
   "homepage": "none",
   "author": "Infosys",
+  "developers": {
+    "SM": "Samrat More",
+    "AB": "Ashutosh Bhagwat",
+    "PA": "Priyanka Ahirrao",
+    "SP": "Sudeep Parchure"
+  },
   "scripts": {
     "test": "grunt test"
   },
@@ -27,8 +33,8 @@
     "url": "npm"
   },
   "license": {
-    "type": "none",
-    "url": "none"
+    "type": "MIT",
+    "url": "Infosys.com"
   },
   "devDependencies": {
     "btoa": "~1.1.2",
