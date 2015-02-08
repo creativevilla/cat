@@ -133,6 +133,13 @@ module.exports = function (grunt) {
           'js/affix.js'
         ],
         dest: 'dist/js/<%= pkg.name %>.js'
+      },
+      cat: {
+        src: [
+          'js/color.js',
+          'js/font.js'
+        ],
+        dest: 'dist/js/<%= catPkg.name %>.js'
       }
     },
 
@@ -151,6 +158,10 @@ module.exports = function (grunt) {
       docsJs: {
         src: configBridge.paths.docsJs,
         dest: 'docs/assets/js/docs.min.js'
+      },
+      catJs:{
+        src: '<%= concat.cat.dest %>',
+        dest: 'dist/js/<%= catPkg.name %>.min.js'
       }
     },
 
@@ -440,7 +451,7 @@ module.exports = function (grunt) {
   if (runSubset('core') &&
       // Skip core tests if this is a Savage build
       process.env.TRAVIS_REPO_SLUG !== 'twbs-savage/bootstrap') {
-    testSubtasks = testSubtasks.concat(['dist-css', 'dist-js', 'csslint:dist', 'test-js', 'docs']);
+    testSubtasks = testSubtasks.concat(['dist-css', 'dist-js', 'dist-cat-js', 'csslint:dist', 'test-js', 'docs']);
   }
   // Skip HTML validation if running a different subset of the test suite
   if (runSubset('validate-html') &&
@@ -463,12 +474,15 @@ module.exports = function (grunt) {
   // JS distribution task.
   grunt.registerTask('dist-js', ['concat', 'uglify:core', 'commonjs']);
 
+  // CAT JS distribution task.
+  grunt.registerTask('dist-cat-js', ['concat', 'uglify:catJs']);
+
   // CSS distribution task.
   grunt.registerTask('less-compile', ['less:compileCore', 'less:compileTheme']);
   grunt.registerTask('dist-css', ['less-compile', 'autoprefixer:core', 'autoprefixer:theme', 'usebanner', 'csscomb:dist', 'cssmin:minifyCore', 'cssmin:minifyTheme']);
 
   // Full distribution task.
-  grunt.registerTask('dist', ['clean:dist', 'dist-css', 'copy:fonts', 'dist-js']);
+  grunt.registerTask('dist', ['clean:dist', 'dist-css', 'copy:fonts', 'dist-js', 'dist-cat-js']);
 
   // Default task.
   grunt.registerTask('default', ['clean:dist', 'copy:fonts', 'test']);
