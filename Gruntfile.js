@@ -85,7 +85,10 @@ module.exports = function (grunt) {
       },
       assets: {
         src: ['docs/assets/js/src/*.js', 'docs/assets/js/*.js', '!docs/assets/js/*.min.js']
-      }
+      },
+			catJs: {
+				src: 'js/cat-js/*.js'
+			}
     },
 
     jscs: {
