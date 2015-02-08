@@ -49,6 +49,15 @@ module.exports = function (grunt) {
     jqueryCheck: configBridge.config.jqueryCheck.join('\n'),
     jqueryVersionCheck: configBridge.config.jqueryVersionCheck.join('\n'),
 
+    // CAT metadata.
+    catPkg: grunt.file.readJSON('cat-package.json'),
+    catbanner: '/*!\n' +
+            ' * CAT v<%= pkg.version %> (<%= pkg.homepage %>)\n' +
+            ' * Copyright 2015-<%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' +
+            ' * Licensed under <%= pkg.license.type %> (<%= pkg.license.url %>)\n' +
+            ' * Developers - <%= pkg.developers.SM %>, <%= pkg.developers.AB %>, <%= pkg.developers.PA %>, <%= pkg.developers.SP %>\n' +
+            ' */\n',
+
     // Task configuration.
     clean: {
       dist: 'dist',
