@@ -51,7 +51,7 @@ module.exports = function (grunt) {
 
     // CAT metadata.
     catPkg: grunt.file.readJSON('cat-package.json'),
-    catbanner: '/*!\n' +
+    catBanner: '/*!\n' +
             ' * CAT v<%= pkg.version %> (<%= pkg.homepage %>)\n' +
             ' * Copyright 2015-<%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' +
             ' * Licensed under <%= pkg.license.type %> (<%= pkg.license.url %>)\n' +
